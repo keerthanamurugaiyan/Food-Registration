@@ -309,7 +309,7 @@ const List = () => {
         <button className="">
           <Link
             className=" text-light me-1 text-dark "
-            to={`/foodregistration/${rowData.id}/edit`}
+            to={`/edit/${rowData.id}/edit`}
           >
             {/* <LuClipboardEdit className="text-primary fs-4" /> */}
             <MdOutlineEditCalendar className="text-primary fs-4"/>
