@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { fetchUser, updateUser } from "../Reducer/Actiontype/Actions";
 import { getItemsRequest, updateItemRequest } from "../ReduxSaga/Action/Action";
 import { useParams, useNavigate, Link } from "react-router-dom";
-// import "./Registration.css";
+import "./Register.css";
 
 const Edit = () => {
   const { id } = useParams();

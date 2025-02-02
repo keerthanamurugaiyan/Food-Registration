@@ -18,19 +18,37 @@ const saveToLocalStorage = (items) => localStorage.setItem('items', JSON.stringi
 const loadFromLocalStorage = () => JSON.parse(localStorage.getItem('items')) || [];
 
 // Add Item Saga
+// function* addItemSaga(action) {
+//   try {
+//     const existingItems = loadFromLocalStorage();
+//     const updatedItems = [...existingItems, action.payload];
+//     saveToLocalStorage(updatedItems);
+//     yield put(addItemSuccess(action.payload));
+//   } catch (error) {
+//     yield put(addItemFailure(error.message));
+//   }
+// }
+
 function* addItemSaga(action) {
   try {
+    console.log("AddItemSaga Received:", action.payload);
+    
     const existingItems = loadFromLocalStorage();
     const updatedItems = [...existingItems, action.payload];
+
     saveToLocalStorage(updatedItems);
+    yield put(getItemsSuccess(updatedItems)); 
+
+    console.log("Updated LocalStorage Data:", loadFromLocalStorage());
     yield put(addItemSuccess(action.payload));
   } catch (error) {
     yield put(addItemFailure(error.message));
   }
 }
 
+
 // Get Items Saga
-function* getItemsSaga() {
+function* getItemsSaga(action) {
   try {
     const items = loadFromLocalStorage();
     yield put(getItemsSuccess(items));

@@ -1,48 +1,9 @@
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// // import { addItem } from './actions';  // Assuming actions are already set up
-// import { useNavigate } from 'react-router-dom'; // For navigation after form submission
-// import { addItem } from '../ReduxSaga/Action/Action';
-
-// function FormComponent() {
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate(); // Use navigate to redirect
-//     const [formData, setFormData] = useState({ name: '' });
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         // Dispatch addItem action
-//         dispatch(addItem({ id: Date.now(), name: formData.name }));
-//         // Reset form
-//         setFormData({ name: '' });
-//         // Redirect to table page
-//         navigate('/table');
-//     };
-
-//     return (
-//         <div>
-//             <h1>Add Item</h1>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="text"
-//                     value={formData.name}
-//                     onChange={(e) => setFormData({ name: e.target.value })}
-//                     placeholder="Enter name"
-//                 />
-//                 <button type="submit">Submit</button>
-//             </form>
-//         </div>
-//     );
-// }
-
-// export default FormComponent;
-
-
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addItemRequest } from "../ReduxSaga/Action/Action";
+import "./Register.css";
+
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -121,20 +82,55 @@ const Form = () => {
         "Opening date is required. Please provide the intended opening date for your business.";
     }
 //    debugger
-    if (Object.keys(validationErrors).length === 0) {
-      dispatch(
-        addItemRequest({
-          name,
-          email,
-          phoneNumber,
-          address,
-          business,
-          food,
-          description,
-          addressTwo,
-          date,
-        })
-      );
+    // if (Object.keys(validationErrors).length === 0) {
+    //   dispatch(
+    //     addItemRequest({
+    //       name,
+    //       email,
+    //       phoneNumber,
+    //       address,
+    //       business,
+    //       food,
+    //       description,
+    //       addressTwo,
+    //       date,
+    //     })
+    //   );
+
+
+  if (Object.keys(validationErrors).length === 0) {
+    console.log("Dispatching addItemRequest:", {
+      name,
+      email,
+      phoneNumber,
+      address,
+      business,
+      food,
+      description,
+      addressTwo,
+      date,
+    });
+
+    dispatch(
+      addItemRequest({
+        name,
+        email,
+        phoneNumber,
+        address,
+        business,
+        food,
+        description,
+        addressTwo,
+        date,
+      })
+    );
+
+//     reset();
+//     nav("/listmanaging");
+//   } else {
+//     setErrors(validationErrors);
+//   }
+// };
 
       reset();
       nav("/listmanaging");

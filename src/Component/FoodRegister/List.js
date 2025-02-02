@@ -1,52 +1,3 @@
-// import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { deleteItem, getItems } from '../ReduxSaga/Action/Action';
-
-// function TableComponent() {
-//     const dispatch = useDispatch();
-//     const { items, loading, error } = useSelector((state) => state);
-
-//     useEffect(() => {
-//         dispatch(getItems()); // Fetch items when component loads
-//     }, [dispatch]);
-
-//     const handleDelete = (id) => {
-//         dispatch(deleteItem(id)); // Delete item
-//     };
-
-//     return (
-//         <div>
-//             <h1>Items List</h1>
-//             {loading && <div>Loading...</div>}
-//             {error && <div className="error">{error}</div>}
-            
-//             <table>
-//                 <thead>
-//                     <tr>
-//                         <th>Name</th>
-//                         <th>Actions</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {items.map((item) => (
-//                         <tr key={item.id}>
-//                             <td>{item.name}</td>
-//                             <td>
-//                                 <button onClick={() => handleDelete(item.id)}>Delete</button>
-//                             </td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </table>
-//         </div>
-//     );
-// }
-
-// export default TableComponent;
-
-
-
-
 import React, { useState, useEffect, useRef } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -79,7 +30,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "primeicons/primeicons.css";
 // import { LuClipboardEdit } from "react-icons/lu";
 import Loader from "../Loader/Loader";
-// import "./Registration.css";
+import "./Register.css";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -102,10 +53,13 @@ const List = () => {
     const fetchData = async () => {
       setLoading(true);
       await dispatch(getItemsRequest());
+      console.log("Fetching items from LocalStorage...", getItemsRequest);
       setLoading(false);
     };
     fetchData();
   }, [dispatch]);
+
+  
 
   const openNew = () => {
     navigate(`/foodregistration`);
